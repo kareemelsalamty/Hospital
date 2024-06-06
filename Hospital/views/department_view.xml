@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_department_kanban" model="ir.ui.view">
+            <field name="name">Department Kanban View</field>
+            <field name="model">hms.department</field>
+            <field name="arch" type="xml">
+                <kanban class="o_library_department_kanban">
+                    <field name="id"/>
+
+                    <field name="name"/>
+                    <field name="capacity"/>
+                    <field name="is_opened"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <p>
+                                    <field name="capacity"/>
+                                </p>
+                                 <p>
+                                    <field name="is_opened"/>
+                                </p>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_department_form" model="ir.ui.view">
+            <field name="name">Department Form View</field>
+            <field name="model">hms.department</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="capacity"/>
+                            <field name="is_opened"/>
+                        </group>
+
+                        <notebook>
+                            <page string="patients">
+                                <field name="patient_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+
+        <record id="view_department_tree" model="ir.ui.view">
+            <field name="name">Department Tree View</field>
+            <field name="model">hms.department</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="capacity"/>
+                    <field name="is_opened"/>
+                </tree>
+            </field>
+
+        </record>
+
+        <record id="department_action" model="ir.actions.act_window">
+            <field name="name">Department</field>
+            <field name="res_model">hms.department</field>
+            <field name="view_mode">tree,kanban,form</field>
+        </record>
+        <menuitem id="department_menu_root_child"
+                  name="Departments"
+                  parent="department_menu_root"
+                  action="department_action"/>
+    </data>
+</odoo>

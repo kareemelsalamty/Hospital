@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="print_patient_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page w-50 m-auto">
+                    <t t-call="web.external_layout">
+
+                        <div class="container bg-light shadow p-5">
+                            <div class="row justify-content-between mb-3">
+                                <div class="content-left col-7">
+                                    <h1 class="text-danger">Patient Status Report</h1>
+                                </div>
+                                <div class="content-right col-5 ms-auto">
+                                    <img t-if="o.image" style="max-height: 250px; max-width: 250px;"
+                                         t-att-src="image_data_uri(o.image)"
+                                         alt="Cover Image"/>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-between">
+                                <div class="content-left col-4">
+                                    <p t-att-class="'fw-bold'">Name:
+                                        <span t-field="o.f_name"/>
+                                    </p>
+                                    <p t-att-class="'fw-bold'">Age:
+                                        <span t-field="o.age"/>
+                                    </p>
+                                    <p t-att-class="'fw-bold'">Department:
+                                        <span t-field="o.department_id"/>
+                                    </p>
+                                    <p t-att-class="'fw-bold'">Doctors:
+                                        <span t-field="o.doctors_ids"/>
+                                    </p>
+                                </div>
+
+                                <div class="content-right col-4">
+                                    <p t-att-class="'fw-bold'">Birth Date:
+                                        <span t-field="o.birth_date"/>
+                                    </p>
+                                    <p t-att-class="'fw-bold'">Pcr:
+                                        <span t-field="o.pcr"/>
+                                    </p>
+                                    <p t-att-class="'fw-bold'">Blood Type:
+                                        <span t-field="o.blood_type"/>
+                                    </p>
+                                    <p t-att-class="'fw-bold'">Email:
+                                        <span t-field="o.email"/>
+                                    </p>
+                                </div>
+                            </div>
+                            <h1 class="text-danger mt-3">Log History</h1>
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="count" t-value="0"/>
+                                    <t t-foreach="o.log_history_ids" t-as="line">
+                                        <t t-set="count" t-value="count + 1"/>
+                                        <tr>
+                                            <td>
+                                                <span t-esc="count"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="line.patient_id.f_name"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="line.current_date"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="line.description"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

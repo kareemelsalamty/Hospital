@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="hms_menu"
+              name="HMS"
+              web_icon="hms,static/description/hms.png"/>
+
+    <menuitem id="patient_menu_root"
+              name="Patient"
+              parent="hms_menu"/>
+
+    <menuitem id="department_menu_root"
+              name="Department"
+              parent="hms_menu"/>
+
+    <menuitem id="doctor_menu_root"
+              name="Doctor"
+              parent="hms_menu"/>
+
+</odoo>

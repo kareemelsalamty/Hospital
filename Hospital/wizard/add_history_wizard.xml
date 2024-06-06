@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="history_wizard_view_form" model="ir.ui.view">
+        <field name="name">history.wizard.view.form</field>
+        <field name="model">wizard.add_history</field>
+        <field name="arch" type="xml">
+            <form>
+                <group class="oe_title">
+                    <field name="patient_id" string="Created by" readonly="True"/>
+                    <field name="current_date" string="Date" readonly="True"/>
+                    <field name="description" string="Description"/>
+                </group>
+
+                <footer>
+                    <button string="Add History" type="object" name="action_add_history" class="oe_highlight"
+                            data-hotkey="q"/>
+
+                    <button string="Cancel" special="cancel" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="history_wizard_action" model="ir.actions.act_window">
+        <field name="name">Add History</field>
+        <field name="res_model">wizard.add_history</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hms.history_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
